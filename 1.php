@@ -54,10 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Degree = test_input($_POST["Degree"]);
   }
   
-  if (empty($_POST["bg"])) {
+  if ($_POST["bg"]=="null") {
     $bgErr = "Blood Group is required";
   } else {
-    $Degree = test_input($_POST["bg"]);
+    $bg = test_input($_POST["bg"]);
   }
 }
 
@@ -91,6 +91,7 @@ function test_input($data) {
 				<br>
   		Blood Group <br>
 			    <select name="bg">
+				<option <?php if (isset($bg) && $bg=="null") echo "selected";?> value="null">-</option>
 			    <option <?php if (isset($bg) && $bg=="A+") echo "selected";?> value="A+">A+</option>
 				<option <?php if (isset($bg) && $bg=="A-") echo "selected";?> value="A-">A-</option>
 				<option <?php if (isset($bg) && $bg=="AB+") echo "selected";?> value="AB+">AB+</option>
