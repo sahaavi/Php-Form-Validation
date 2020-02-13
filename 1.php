@@ -106,19 +106,130 @@ function test_input($data) {
 		<input type="submit" value="Submit"> <br>
 	</form>
 
-	<?php
-		echo "<h2>Your Input:</h2>";
-		echo $Name;
-		echo "<br>";
-		echo $Email;
-		echo "<br>";
-		echo $bday;
-		echo "<br>";
-		echo $gender;
-		echo "<br>";
-		echo $Degree;
-		echo "<br>";
-		echo $bg;
-	?>
+
+
+<?php
+class User {
+  public $Name;
+  public $Email;
+  public $bday;
+  public $gender;
+  public $Degree;
+  public $bg;
+
+  function __construct($Name, $Email, $bday, $gender, $Degree, $bg) {
+    $this->Name = $Name; 
+    $this->Email = $Email;
+    $this->bday = $bday; 
+    $this->gender = $gender; 
+    $this->Degree = $Degree; 
+    $this->bg = $bg; 
+  }
+  function get_name() {
+    return $this->Name;
+  }
+  function get_email() {
+    return $this->Email;
+  }
+  function get_bday() {
+    return $this->bday;
+  }
+  function get_gender() {
+    return $this->gender;
+  }
+  function get_Degree() {
+    return $this->Degree;
+  }
+  function get_bg() {
+    return $this->bg;
+  }
+}
+
+$apple = new User($Name, $Email, $bday, $gender, $Degree, $bg);
+echo $apple->get_name();
+echo "<br>";
+echo $apple->get_email();
+echo "<br>";
+echo $apple->get_bday();
+echo "<br>";
+echo $apple->get_gender();
+echo "<br>";
+echo $apple->get_Degree();
+echo "<br>";
+echo $apple->get_bg();
+?>
+ 
+<?php
+
+  $dom = new DOMDocument();
+
+    $dom->encoding = 'utf-8';
+
+    $dom->xmlVersion = '1.0';
+
+    $dom->formatOutput = true;
+
+  $xml_file_name = 'movies_list.xml';
+
+    $root = $dom->createElement('Users');
+
+    $movie_node = $dom->createElement('user');
+
+    $attr_movie_id = new DOMAttr('user_id', '5467');
+
+    $movie_node->setAttributeNode($attr_movie_id);
+
+  $child_node_title = $dom->createElement('Name', $apple->get_name());
+
+    $movie_node->appendChild($child_node_title);
+
+    $child_node_year = $dom->createElement('Email', $apple->get_email());
+
+    $movie_node->appendChild($child_node_year);
+
+  $child_node_genre = $dom->createElement('Birthday', $apple->get_bday());
+
+    $movie_node->appendChild($child_node_genre);
+
+    $child_node_ratings = $dom->createElement('Gender', $apple->get_gender());
+
+    
+
+    $root->appendChild($movie_node);
+
+    $dom->appendChild($root);
+
+  $dom->save($xml_file_name);
+
+  echo "$xml_file_name has been successfully created";
+?>
+
+
+
+
+
+
+
+<?php
+$file = fopen("lab3-file.txt", "w") or die("Unable to open file!");
+$Name;
+$Email;
+$bday;
+$gender;
+$Degree;
+$bg;
+
+fwrite($file, $Name); 
+fwrite($file, $Email); 
+fwrite($file, $bday);
+fwrite($file, $gender);
+fwrite($file, $Degree);
+fwrite($file, $bg);
+
+
+
+fclose($file);
+?>
+
 </body>
 </html>
